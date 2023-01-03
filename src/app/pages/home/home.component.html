@@ -3,23 +3,25 @@
     <form>
       <div class="mb-6">
         <label for="txtPrimerValor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ingrese primer valor</label>
-        <input type="number" id="txtPrimerValor" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+        <input (input)="operar()" [(ngModel)]="miFormulario.primerValor" name="primerValor" type="number" id="txtPrimerValor" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
       </div>
 
       <div class="mb-6">
         <label for="txtSegundoValor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ingrese segundo valor</label>
-        <input type="number" id="txtSegundoValor" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+        <input (input)="operar()" [(ngModel)]="miFormulario.segundoValor" name="segundoValor" type="number" id="txtSegundoValor" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
       </div>
 
       <div class="mb-6">
-        <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <select (change)="operar()" [(ngModel)]="miFormulario.operacion" name="operacion" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
           <option value="">Elija una opción</option>
           <option *ngFor="let operacion of operaciones" [value]="operacion | lowercase">{{operacion}}</option>
         </select>
       </div>
     </form>
     <div class="p-4 text-sm text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-800 dark:text-gray-300" role="alert">
-      <p>Resultado: <span>12</span></p>
+      <p [ngStyle]="{'color': miFormulario.operacion ? 'blue' : 'red'}">
+        Resultado: {{ resultado }}
+      </p>
     </div>
   </div>
 </main>
